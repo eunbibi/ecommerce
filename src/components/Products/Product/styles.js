@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-//right away = instance return -> curly bracket
+                        //right away = instance return -> curly bracket
 export default makeStyles(() => ({
     root: {
         maxWidth: '100%',

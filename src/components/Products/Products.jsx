@@ -9,7 +9,7 @@ import useStyles from './styles';
 //     {id:2, name: 'Macbook', description: 'Serise 9', price: '$59', image: 'https://media.istockphoto.com/photos/laptop-picture-id483912231?k=20&m=483912231&s=612x612&w=0&h=QkKZ4oEy9cd7605DeYnDpKilzrUZUybCoJ9k2cfwUzs='}
 // ];
 
-const Products = ({products})=> {
+const Products = ({products, onAddToCart})=> {
     //call it as a function
     const classes = useStyles();
 
@@ -21,7 +21,7 @@ const Products = ({products})=> {
                     // for rooping in JSX, you need the id
                                                 //for devices' sizes
                     <Grid item key={products.id} xs={12} sm={6} md={4} lg={3}>
-                        <Product product={product}/>
+                        <Product product={product} onAddToCart={onAddToCart}/>
                     </Grid>
                 ))}
             </Grid>

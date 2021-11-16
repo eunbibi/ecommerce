@@ -14,6 +14,9 @@ const App = () => {
     //state
     const [products, setProducts] = useState([]);
 
+    //cart adding
+    const [cart, setCart] = useState({});
+
     const fetchProducts = async () => {
         // this is gonna return a promise
         const {data} = await commerce.products.list();
@@ -21,19 +24,36 @@ const App = () => {
         setProducts(data);
     }
 
+    //another function
+    const fetchCart = async () => {
+        //const cart = await commerce.cart.retrieve();
+        //setCart(cart)
+        // shorter version
+                    //using API
+        setCart(await commerce.cart.retrieve())
+    }
+
+    //add products in the cart
+    const handleAddToCart = async (productId, quantity) => {
+        const item = await commerce.cart.add(productId, quantity);
+
+        setCart(item.cart);
+        }
+
     //calling products
     //useEffect hook
     useEffect(() => {
         //call commerce.products.list(); AND setProducts to state
         fetchProducts();
+        fetchCart();
     }, []);
 
-    console.log(products);
+    console.log(cart);
 
     return (
         <div>
-            <Navbar />
-            <Products products={products}/>
+            <Navbar totalItems={cart.total_items}/>
+            <Products products={products} onAddToCart={handleAddToCart}/>
         </div>
     )
 }
@@ -41,4 +61,4 @@ const App = () => {
 export default App;
 
 
-//52:40
+//1:01:22
